@@ -50,6 +50,13 @@ export default function Home() {
                 >
                   Edit
                 </Button>
+                <Button
+                  variant="info"
+                  className="me-2"
+                  onClick={() => navigate("/map", { state: route })}
+                >
+                  View On Map
+                </Button>
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
