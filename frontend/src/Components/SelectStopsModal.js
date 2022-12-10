@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import utils from "../utils";
 
 function SelectStopsModal(props) {
@@ -14,7 +14,7 @@ function SelectStopsModal(props) {
     props.setCheckedList(updatedCheckedState);
   };
   return (
-    <>
+    <Container>
       <Modal show={props.show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Stops Available</Modal.Title>
@@ -45,7 +45,7 @@ function SelectStopsModal(props) {
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </Container>
   );
 }
 export default SelectStopsModal;

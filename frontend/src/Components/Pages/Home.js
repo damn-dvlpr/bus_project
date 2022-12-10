@@ -22,16 +22,17 @@ export default function Home() {
   <Container>
   {routes.map((route) => {
     return (
-        <Accordion>
+        <Accordion key={route.id}>
           <Accordion.Item eventKey="0">
             <Accordion.Header>{route.name}</Accordion.Header>
             <Accordion.Body>
               <ul>
                 {route.stops.map((stop) => {
-                  return <li>{stop.name}</li>;
+                  return <li key={stop.id}>{stop.name}</li>;
                 })}
               </ul>
               <Button variant="danger" onClick={()=>deleteRoute(route.id)}>Delete</Button>
+              <Button variant="info" onClick={()=>navigate("/editRoute",{state:route})}>Edit</Button>
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
