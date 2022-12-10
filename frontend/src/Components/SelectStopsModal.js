@@ -14,7 +14,7 @@ function SelectStopsModal(props) {
     props.setCheckedList(updatedCheckedState);
   };
   return (
-    <Container>
+    <Container  className="w-50">
       <Modal show={props.show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Stops Available</Modal.Title>
