@@ -1,11 +1,12 @@
 import React from 'react'
-import Stop from "./Stop";
+import Stop from "../Stop";
 import { Container } from "react-bootstrap";
+import utils from '../../utils';
 export default function RoutePage() {
   return (
     <>
-      <h1>Route 1</h1>
-      <Stop></Stop>
+      <h1>{utils.routes.name}</h1>
+      <Stop stops={utils.routes.stops}></Stop>
       </>
   )
 }

@@ -1,17 +1,24 @@
-import { useState, React } from "react";
+import { useState, React, useEffect } from "react";
 import { Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-
+import SelectStopsModal from "../SelectStopsModal";
+import utils from "../../utils";
 export default function CreateRoute() {
   const [name, setName] = useState("");
   const [direction, setDirection] = useState("");
-  // const [id,setId]=useState("");
   const [status, setStatus] = useState(false);
-  // function handleNameChange(){
-
-  // }
+  const [modalShow, setModalShow] = useState(false);
+  const [stops,setStops]=useState([]);
+  const [checkedList,setCheckedList]=useState(new Array(utils.stops.length).fill(false));
+  // useEffect(() => {
+  //   setCheckedList(
+  //     new Array(utils.stops.length).fill(false)
+  //   )
+  // }, [stops.length]);
   return (
+    <>
+    <SelectStopsModal show={modalShow} setShow={setModalShow} checkedList={checkedList} setCheckedList={setCheckedList}/>
     <Row>
       <label>Please type Route Name: </label>
       <input
@@ -39,6 +46,10 @@ export default function CreateRoute() {
           onChange={()=>setStatus((prev)=>{return !prev})}
         />
       </label>
+      <Button variant="primary" onClick={()=>setModalShow(true)}>
+        Add Stops.
+      </Button>
     </Row>
+    </>
   );
 }

@@ -1,15 +1,21 @@
 
 import { Container } from "react-bootstrap";
-import CreateRoute from "./CreateRoute";
-import RoutePage from "./RoutePage";
+import { Route, Routes } from "react-router-dom"
+import CreateRoute from "./Components/Pages/CreateRoute";
+import RoutePage from "./Components/Pages/RoutePage";
+
 
 
 function App() {
   return (
-    <Container>
-    {/* <RoutePage></RoutePage> */}
-    <CreateRoute></CreateRoute>
-    </Container>
+    <Routes>
+      <Route path="/routePage" element={<RoutePage/>} />
+      <Route path="/createRoute" element={<CreateRoute />} />
+    </Routes>
+    // <Container>
+    /* <RoutePage></RoutePage> */
+    // <CreateRoute></CreateRoute>
+    // </Container>
   );
 }
 
