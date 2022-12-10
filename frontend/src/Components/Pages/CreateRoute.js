@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import SelectStopsModal from "../SelectStopsModal";
 import utils from "../../utils";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 export default function CreateRoute() {
   const [name, setName] = useState("");
   const [direction, setDirection] = useState("");
@@ -12,6 +13,7 @@ export default function CreateRoute() {
   const [modalShow, setModalShow] = useState(false);
   const [stops, setStops] = useState([]);
   const [checkedList, setCheckedList] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     axios.get("http://localhost:9097/stop/all").then((resp) => {
       setStops(resp.data);
@@ -20,18 +22,13 @@ export default function CreateRoute() {
   }, []);
   function createRoute() {
     let payload = { name: name, status: status?"ACTIVE":"INACTIVE", direction: direction};
-    // stops.forEach((item, i) => {
-    //   if (checkedList[i]) {
-        
-    //   }
-    // });
     payload.stops=stops.filter((item,index)=>{
       return checkedList[index]==true;
     }).map(item=>{
       return item.id;
     })
     axios.post("http://localhost:9097/route/save",payload).then(()=>{
-      alert("Created");
+      navigate("/");
     });
   }
   return (
