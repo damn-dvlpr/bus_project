@@ -22,7 +22,7 @@ function SelectStopsModal(props) {
         <Modal.Body>
           <Row>
             <div className="Stops">
-              {utils.stops.map((item, index) => (
+              {props.stops && props.stops.map((item, index) => (
                 <div key={item.id}>
                   <input
                     value={item.id}
