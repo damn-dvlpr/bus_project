@@ -21,18 +21,27 @@ export default function CreateRoute() {
     });
   }, []);
   function createRoute() {
-    let payload = { name: name, status: status?"ACTIVE":"INACTIVE", direction: direction};
-    payload.stops=stops.filter((item,index)=>{
-      return checkedList[index]==true;
-    }).map(item=>{
-      return item.id;
-    })
-    axios.post("http://localhost:9097/route/save",payload).then(()=>{
+    let payload = {
+      name: name,
+      status: status ? "ACTIVE" : "INACTIVE",
+      direction: direction,
+    };
+    payload.stops = stops
+      .filter((item, index) => {
+        return checkedList[index] == true;
+      })
+      .map((item) => {
+        return item.id;
+      });
+    axios.post("http://localhost:9097/route/save", payload).then(() => {
       navigate("/");
     });
   }
   return (
-    <Container>
+    <Container className="w-50">
+      <div className="bg-light p-5 rounded-lg mb-3 mt-3">
+        <h1 className="display-4">Please create a new route.</h1>
+      </div>
       <SelectStopsModal
         show={modalShow}
         setShow={setModalShow}
@@ -40,27 +49,31 @@ export default function CreateRoute() {
         setCheckedList={setCheckedList}
         stops={stops}
       />
-      <Row>
-        <label>Please type Route Name: </label>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <label>Please Select Direction: </label>
-        <select
-          value={direction}
-          onChange={(e) => setDirection(e.target.value)}
-        >
-          <option value="" disabled>
-            Choose Please
-          </option>
-          <option value="UP">UP</option>
-          <option value="DOWN">DOWN</option>
-        </select>
-        <label>
-          Status
-          <input
+      <Form>
+        <Form.Group className="mb-3" controlId="routeName">
+          <Form.Label>Please type Route Name: </Form.Label>
+          <Form.Control
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="routeDirection">
+          <Form.Label>Please Select Direction:</Form.Label>
+          <Form.Select
+            id="enabledSelect"
+            value={direction}
+            onChange={(e) => setDirection(e.target.value)}
+          >
+            <option value="" disabled>
+              Choose Please
+            </option>
+            <option value="UP">UP</option>
+            <option value="DOWN">DOWN</option>
+          </Form.Select>
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="routeName">
+          <Form.Check
             type="checkbox"
             checked={status}
             onChange={() =>
@@ -68,15 +81,16 @@ export default function CreateRoute() {
                 return !prev;
               })
             }
+            label="Staus"
           />
-        </label>
-        <Button variant="primary" onClick={() => setModalShow(true)}>
-          Add Stops.
+        </Form.Group>
+        <Button className="me-2" variant="primary" onClick={() => setModalShow(true)}>
+          Add Stops
         </Button>
-        <Button variant="primary" onClick={createRoute}>
+        <Button className="me-2" variant="success" onClick={createRoute}>
           Create
         </Button>
-      </Row>
+      </Form>
     </Container>
   );
 }
