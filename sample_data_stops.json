@@ -1,0 +1,35 @@
+
+{
+     {
+        "_id": {
+          "$oid": "639492e8bff2a39bb5a4a87b"
+        },
+        "name": "kudluGate",
+        "latitude": "12.891370186140534",
+        "longitude": "77.6399054266434"
+      },
+      {
+        "_id": {
+          "$oid": "6394930bbff2a39bb5a4a87c"
+        },
+        "name": "eCity",
+        "latitude": "12.841265016463002",
+        "longitude": "77.67574193297797"
+      },
+      {
+        "_id": {
+          "$oid": "6394932ebff2a39bb5a4a87d"
+        },
+        "name": "HSRLayout",
+        "latitude": "12.914332773781723",
+        "longitude": "77.62920907285104"
+      },
+      {
+        "_id": {
+          "$oid": "6394934abff2a39bb5a4a87e"
+        },
+        "name": "Koramangala",
+        "latitude": "12.931280230269323",
+        "longitude": "77.62560902521267"
+      }
+}
