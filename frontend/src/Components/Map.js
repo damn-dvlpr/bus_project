@@ -19,10 +19,13 @@ const Map= () => {
 let waypoints=state.stops.map((stop)=>{
     return {"lng":parseFloat(stop.longitude),"lat":parseFloat(stop.latitude)}
 })
+
+let waypointsName=state.stops.map((stop)=>{
+  return {"name":stop.name}
+})
   var markers = [];
 
   useEffect(() => {
-
     let map = tt.map({
       key: "SL6ZH72gKwizFedpa79iWDWzxnmlcIFC",
       container: mapElement.current,
@@ -38,12 +41,15 @@ let waypoints=state.stops.map((stop)=>{
       zoom: 13
     })
     setMap(map)
-    waypoints.forEach(position => {
+    map.on('click', function (event) {
+      console.log(event.lngLat)
+    })
+    waypoints.forEach((position,index) => {
         const addMarker = (position) => {
         const popupOffset = {
           bottom: [0, -25]
         }
-        const popup = new tt.Popup({ offset: popupOffset })
+        const popup = new tt.Popup({ offset: popupOffset }).setHTML(waypointsName[index]['name'])
         const element = document.createElement('div')
         element.className = 'marker'
   
@@ -73,7 +79,6 @@ let waypoints=state.stops.map((stop)=>{
 
     })
       .then(function (response) {
-        console.log(response)
 
         let solution = response.data.optimizedOrder
         let locations = solution.map(function (order, index) {
@@ -94,7 +99,6 @@ let waypoints=state.stops.map((stop)=>{
       ttapi.services.calculateRoute(options).then(function (response) {
 
         var features = response.toGeoJson().features
-        console.log(features)
         features.forEach(function (feature, index) {
           map.addLayer({
             'id': 'route' + index,

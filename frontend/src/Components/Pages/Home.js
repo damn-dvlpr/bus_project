@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import { Container, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import "../../App.css"
 
 export default function Home() {
   const [routes, setRoutes] = useState([]);
@@ -18,6 +19,11 @@ export default function Home() {
       window.location.reload();
     });
   }
+  function hidePriority1(index){
+    let classes = routes[index].status==='INACTIVE' ? "dotRed" : "dotGreen";
+    console.log(routes[index].status);
+    return classes;
+  }
   return (
     <Container className="w-50">
       <div className="bg-light p-5 rounded-lg mb-3 mt-3 pb-1">
@@ -25,11 +31,14 @@ export default function Home() {
         <p className="lead">Project for Chloe entrance</p>
         <p>List of routes are as follows:</p>
       </div>
-      {routes.map((route) => {
+      {routes.map((route, index) => {
         return (
           <Accordion className="mb-3" key={route.id}>
             <Accordion.Item eventKey="0">
-              <Accordion.Header>{route.name}</Accordion.Header>
+              <Accordion.Header>{route.name} 
+                <div className="right-1 absolute">{route.status}</div>
+                <span className={hidePriority1(index)}></span>
+              </Accordion.Header>
               <Accordion.Body>
                 <ul>
                   {route.stops.map((stop) => {

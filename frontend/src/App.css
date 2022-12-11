@@ -1,3 +1,37 @@
+.dotRed {
+  right: 45px;
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.dotGreen {
+  right: 45px;
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  background-color: green;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.right-1 {
+  font-family:    sans-serif;
+  font-size:      10px;
+  font-weight:    bold;
+  right: 60px;
+}
+.right-2 {
+  right: 40px;
+}
+
 .App {
   text-align: center;
 }
